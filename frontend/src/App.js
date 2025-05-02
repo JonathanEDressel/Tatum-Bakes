@@ -1,0 +1,84 @@
+import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import About from "./pages/About";
+import Gallery from "./pages/Gallery";
+import Contact from "./pages/Contact";
+import Pricing from "./pages/Pricing";
+import Menu from "./pages/Menu";
+import logo from "./assets/images/tatumbakes.jpg";
+import backgorundImg from "./assets/images/bakingbackground.jpg";
+
+const App = () => {
+  return (
+    <div> 
+      <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-evenly" style={{ padding: "0px"}}>
+        <div class="container-fluid" style={{backgroundColor:"#6d8454", height: "80px"}}>
+          {/* <img src={logo} class="img-fluid" href="/" style={{ maxWidth: "90px", borderRadius: "45px", padding:"10px"}} alt="Tatumbakes"></img> */}
+          <div class="collapse navbar-collapse" style={{justifyContent: "center"}}>
+            <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/menu">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/pricing">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/about">About</a>
+            </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      {/* Define Routes */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </div>
+  );
+};
+
+const Home = () => (
+  <div style={{ backgroundColor: "#F9F6F0" }}>
+    <div className="container" style={{overflowY: "auto", backgroundImage: `url(${backgorundImg})`, height:"500px", backgroundRepeat: 'no-repeat', backgroundSize: 'cover', }}>
+      <div className="row" style={{ textAlign: "center" }}>
+        <div className="col col-12">
+          <img src={logo} class="img-fluid" href="/" style={{ maxWidth: "225px", borderRadius: "150px", padding:"5px"}} alt="Tatumbakes"></img>
+        </div>
+        <div className="col col-12" style={{ backgroundColor: "#F9F6F0" }}>
+          <h1 style={{ color: "#6d8454" }}>Tatum Bakes</h1>
+          <p style={{ fontStyle: "italic"}}>Homemade Treats. Freshly Baked. Always with Love.</p>
+        </div>
+        <div className="mt-5 col col-12" style={{ backgroundColor: "#F9F6F0" }}>
+          <h1 style={{ color: "#6d8454" }}>About</h1>
+          <p style={{ fontStyle: "italic"}}>At Tatum Bakes, we believe every bite should feel like home. Handmade, fresh, and full of flavor.</p>
+        </div>
+
+        <div className="mt-5 col col-12" style={{ backgroundColor: "#F9F6F0" }}>
+          <h1 style={{ color: "#6d8454" }}>About</h1>
+          <p style={{ fontStyle: "italic"}}>Homemade Treats. Freshly Baked. Always with Love.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const styles = {
+
+}
+
+export default App;
