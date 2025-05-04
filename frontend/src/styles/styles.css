@@ -1,0 +1,31 @@
+.base-body {
+    background-color: whitesmoke;
+}
+
+.home-body {
+    overflow-y: auto;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.order-details {
+    /* width: "80%"; */
+    height: 250px;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.fancy-font {
+    font-style: italic;
+}
+
+.center-font {
+    text-align: center;
+}
+
+.required-field {
+    color: red;
+}

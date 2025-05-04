@@ -7,10 +7,11 @@ import Pricing from "./pages/Pricing";
 import Menu from "./pages/Menu";
 import logo from "./assets/images/tatumbakes.jpg";
 import backgorundImg from "./assets/images/bakingbackground.jpg";
+import styles from './styles/styles.css';
 
 const App = () => {
   return (
-    <div> 
+    <div class="base-body"> 
       <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-evenly" style={{ padding: "0px"}}>
         <div class="container-fluid" style={{backgroundColor:"#6d8454", height: "80px"}}>
           {/* <img src={logo} class="img-fluid" href="/" style={{ maxWidth: "90px", borderRadius: "45px", padding:"10px"}} alt="Tatumbakes"></img> */}
@@ -53,32 +54,28 @@ const App = () => {
 };
 
 const Home = () => (
-  <div style={{ backgroundColor: "#F9F6F0" }}>
-    <div className="container" style={{overflowY: "auto", backgroundImage: `url(${backgorundImg})`, height:"500px", backgroundRepeat: 'no-repeat', backgroundSize: 'cover', }}>
-      <div className="row" style={{ textAlign: "center" }}>
-        <div className="col col-12">
+  <div class="base-body">
+    <div class="container home-body" style={{backgroundImage: `url(${backgorundImg})` }}>
+      <div class="row center-font">
+        <div class="col col-12">
           <img src={logo} class="img-fluid" href="/" style={{ maxWidth: "225px", borderRadius: "150px", padding:"5px"}} alt="Tatumbakes"></img>
         </div>
-        <div className="col col-12" style={{ backgroundColor: "#F9F6F0" }}>
+        <div class="col col-12" style={{ backgroundColor: "#F9F6F0" }}>
           <h1 style={{ color: "#6d8454" }}>Tatum Bakes</h1>
-          <p style={{ fontStyle: "italic"}}>Homemade Treats. Freshly Baked. Always with Love.</p>
+          <p class="fancy-font">Homemade Treats. Freshly Baked. Always with Love.</p>
         </div>
-        <div className="mt-5 col col-12" style={{ backgroundColor: "#F9F6F0" }}>
+        <div class="mt-5 col col-12" style={{ backgroundColor: "#F9F6F0" }}>
           <h1 style={{ color: "#6d8454" }}>About</h1>
-          <p style={{ fontStyle: "italic"}}>At Tatum Bakes, we believe every bite should feel like home. Handmade, fresh, and full of flavor.</p>
+          <p class="fancy-font">At Tatum Bakes, we believe every bite should feel like home. Handmade, fresh, and full of flavor.</p>
         </div>
 
-        <div className="mt-5 col col-12" style={{ backgroundColor: "#F9F6F0" }}>
+        <div class="mt-5 col col-12" style={{ backgroundColor: "#F9F6F0" }}>
           <h1 style={{ color: "#6d8454" }}>About</h1>
-          <p style={{ fontStyle: "italic"}}>Homemade Treats. Freshly Baked. Always with Love.</p>
+          <p class="fancy-font">Homemade Treats. Freshly Baked. Always with Love.</p>
         </div>
       </div>
     </div>
   </div>
 );
-
-const styles = {
-
-}
 
 export default App;
