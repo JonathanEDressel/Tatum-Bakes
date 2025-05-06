@@ -34,10 +34,10 @@ const Contact = () => {
       alert('Please fill out all fields with a red * next to them!')
       return;
     }
-
+    var receiptEmail = process.env.REACT_APP_DESIGNATED_EMAIL;
     const templateParams = {
       user_email: user.email,
-      receipt_email: 'jonathanedressel@gmail.com',
+      receipt_email: receiptEmail,
       fname: user.fname,
       lname: user.lname,
       pnumber: user.phone,
@@ -46,7 +46,6 @@ const Contact = () => {
     var serviceId = process.env.REACT_APP_SERVICE_ID;
     var templateId = process.env.REACT_APP_TEMPLATE_ID;
     var userId = process.env.REACT_APP_USER_ID;
-    
 
     emailjs.send(serviceId, templateId, templateParams, userId)
       .then((result) => {

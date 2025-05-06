@@ -14,7 +14,6 @@ const App = () => {
     <div class="base-body"> 
       <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-evenly" style={{ padding: "0px"}}>
         <div class="container-fluid" style={{backgroundColor:"#6d8454", height: "80px"}}>
-          {/* <img src={logo} class="img-fluid" href="/" style={{ maxWidth: "90px", borderRadius: "45px", padding:"10px"}} alt="Tatumbakes"></img> */}
           <div class="collapse navbar-collapse" style={{justifyContent: "center"}}>
             <ul class="navbar-nav">
             <li class="nav-item">
@@ -58,19 +57,19 @@ const Home = () => (
     <div class="container home-body" style={{backgroundImage: `url(${backgorundImg})` }}>
       <div class="row center-font">
         <div class="col col-12">
-          <img src={logo} class="img-fluid" href="/" style={{ maxWidth: "225px", borderRadius: "150px", padding:"5px"}} alt="Tatumbakes"></img>
+          <img src={logo} class="img-fluid home-logo" href="/" alt="Tatumbakes"></img>
         </div>
         <div class="col col-12" style={{ backgroundColor: "#F9F6F0" }}>
-          <h1 style={{ color: "#6d8454" }}>Tatum Bakes</h1>
+          <h1 class="home-header">Tatum Bakes</h1>
           <p class="fancy-font">Homemade Treats. Freshly Baked. Always with Love.</p>
         </div>
         <div class="mt-5 col col-12" style={{ backgroundColor: "#F9F6F0" }}>
-          <h1 style={{ color: "#6d8454" }}>About</h1>
+          <h1 class="home-header">About</h1>
           <p class="fancy-font">At Tatum Bakes, we believe every bite should feel like home. Handmade, fresh, and full of flavor.</p>
         </div>
 
         <div class="mt-5 col col-12" style={{ backgroundColor: "#F9F6F0" }}>
-          <h1 style={{ color: "#6d8454" }}>About</h1>
+          <h1 class="home-header">About</h1>
           <p class="fancy-font">Homemade Treats. Freshly Baked. Always with Love.</p>
         </div>
       </div>
