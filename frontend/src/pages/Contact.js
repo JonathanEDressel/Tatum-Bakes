@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import emailjs from 'emailjs-com';
+import React, { useEffect, useState } from "react";
+// import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 import styles from '../styles/styles.css';
 
 const Contact = () => {
@@ -29,12 +30,19 @@ const Contact = () => {
     return false;
   };
 
-  const sendEmail = () => {
+  const sendEmail = (e) => {
+    e.preventDefault();
+
     if(!canSendEmail()) {
       alert('Please fill out all fields with a red * next to them!')
       return;
     }
+
+    var userId = process.env.REACT_APP_USER_ID;
     var receiptEmail = process.env.REACT_APP_DESIGNATED_EMAIL;
+    var serviceId = process.env.REACT_APP_SERVICE_ID;
+    var templateId = process.env.REACT_APP_TEMPLATE_ID;
+    
     const templateParams = {
       user_email: user.email,
       receipt_email: receiptEmail,
@@ -43,16 +51,26 @@ const Contact = () => {
       pnumber: user.phone,
       information: user.info
     };
-    var serviceId = process.env.REACT_APP_SERVICE_ID;
-    var templateId = process.env.REACT_APP_TEMPLATE_ID;
-    var userId = process.env.REACT_APP_USER_ID;
 
-    emailjs.send(serviceId, templateId, templateParams, userId)
+    emailjs.send(serviceId, templateId, templateParams, {
+      publicKey: userId,
+      blockHeadless: true,
+      blockList: {
+        list: [],
+        watchVariable: 'user_email'
+      },
+      limitRate: {
+        id: 'app',
+        throttle: 50000
+      }
+    })
       .then((result) => {
         alert('Email sent! You will be contacted shortly!');
+        console.log('EmailJS result:', result);
       }, (error) => {
-        alert('Email failed to send. Please try again!', error.text);
-      });
+        console.log('EmailJS error:', error.status)
+        alert('Error: ' + error.status + ' - ' + error.text);
+    });
   };
 
   const handleChange = (e) => {
