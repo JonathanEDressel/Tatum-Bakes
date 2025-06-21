@@ -7,33 +7,41 @@ import Pricing from "./pages/Pricing";
 import Menu from "./pages/Menu";
 import logo from "./assets/images/tatumbakes.jpg";
 import backgorundImg from "./assets/images/bakingbackground.jpg";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './styles/styles.css';
 
 const App = () => {
+  React.useEffect(() => {
+    fetch('/api')
+      .then((res) => {
+        console.log('res - ', res.json())
+      })
+  })
+
   return (
     <div class="base-body"> 
       <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-evenly" style={{ padding: "0px"}}>
         <div class="container-fluid" style={{backgroundColor:"#6d8454", height: "80px"}}>
           <div class="collapse navbar-collapse" style={{justifyContent: "center"}}>
             <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/gallery">Gallery</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/menu">Menu</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/pricing">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/about">About</a>
-            </li>
+              <li class="nav-item">
+                <a class="nav-option active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a className="nav-option active" aria-current="page" href="/gallery">Gallery</a>
+              </li>
+              <li class="nav-item">
+                <a className="nav-option active" aria-current="page" href="/menu">Menu</a>
+              </li>
+              <li class="nav-item">
+                <a className="nav-option active" aria-current="page" href="/pricing">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a className="nav-option active" aria-current="page" href="/contact">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a className="nav-option active"  aria-current="page" href="/about">About</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -48,6 +56,9 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
       </Routes>
+      <div class="footer">
+
+      </div>
     </div>
   );
 };
