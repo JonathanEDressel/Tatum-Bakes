@@ -1,18 +1,27 @@
 .base-body {
     background-color: whitesmoke;
-    border: thick double #32a1ce;
 }
 
 .footer {
-    height: 3rem;
+    overflow-x: hidden;
+    padding-left: 5%;
+    display: grid;
+    align-items: center;
+    text-align: center;
+    height: 3.5rem;
     bottom: 0;
     position: sticky;
     background-color: #6d8454;
 }
 
+.icons {
+    color: whitesmoke;
+    font-size: 25px;
+}
+
 .home-body {
     overflow-y: auto;
-    height: 500px;
+    height: 700px;
     background-repeat: no-repeat;
     background-size: cover;
 }

@@ -8,6 +8,8 @@ import Menu from "./pages/Menu";
 import logo from "./assets/images/tatumbakes.jpg";
 import backgorundImg from "./assets/images/bakingbackground.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import styles from './styles/styles.css';
 
 const App = () => {
@@ -57,7 +59,18 @@ const App = () => {
         <Route path="/about" element={<About />} />
       </Routes>
       <div class="footer">
-
+        <div class="row">
+          <div class="col col-auto">
+            <a class="icons" href="https://www.facebook.com/profile.php?id=61568782852360" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faFacebook} />
+            </a>
+          </div>
+          <div class="col col-auto">
+            <a class="icons" href="https://www.instagram.com/tatumbakescakes?igsh=NDlyc2U5c3NuMmF5&utm_source=qr" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faInstagram} />
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
