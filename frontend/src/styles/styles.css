@@ -1,5 +1,6 @@
 .base-body {
     background-color: whitesmoke;
+    overflow-x: hidden;
 }
 
 .footer {
@@ -12,11 +13,18 @@
     bottom: 0;
     position: sticky;
     background-color: #6d8454;
+    margin-top: 4rem;
 }
 
 .icons {
     color: whitesmoke;
     font-size: 25px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.icons:hover {
+    transform: scale(1.2);
+    color: #f0f4ed;
 }
 
 .home-body {
@@ -63,8 +71,48 @@
     text-decoration: none;
     color: whitesmoke;
     font-size: 25px;
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.nav-option:hover {
+    color: #f0f4ed;
+    transform: translateY(-2px);
 }
 
 .required-field {
     color: red;
+}
+
+/* Additional enhancements */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Image hover effects */
+img {
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.02);
 }
