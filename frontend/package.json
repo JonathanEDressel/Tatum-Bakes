@@ -8,6 +8,7 @@
     "bootstrap": "^5.3.5",
     "cra-template": "1.2.0",
     "emailjs-com": "^3.2.0",
+    "postmark": "^4.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-native": "^0.79.2",

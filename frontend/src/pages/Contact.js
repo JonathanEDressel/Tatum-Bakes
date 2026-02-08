@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import emailjs from 'emailjs-com';
-import emailjs from '@emailjs/browser';
+import axios from 'axios';
 import styles from '../styles/styles.css';
 
 const Contact = () => {
@@ -11,6 +10,7 @@ const Contact = () => {
     phone: '',
     info: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -30,7 +30,7 @@ const Contact = () => {
     return false;
   };
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
 
     if(!canSendEmail()) {
@@ -38,39 +38,36 @@ const Contact = () => {
       return;
     }
 
-    var userId = process.env.REACT_APP_USER_ID;
-    var receiptEmail = process.env.REACT_APP_DESIGNATED_EMAIL;
-    var serviceId = process.env.REACT_APP_SERVICE_ID;
-    var templateId = process.env.REACT_APP_TEMPLATE_ID;
-    
-    const templateParams = {
-      user_email: user.email,
-      receipt_email: receiptEmail,
-      fname: user.fname,
-      lname: user.lname,
-      pnumber: user.phone,
-      information: user.info
-    };
+    setIsSubmitting(true);
 
-    emailjs.send(serviceId, templateId, templateParams, {
-      publicKey: userId,
-      blockHeadless: true,
-      blockList: {
-        list: [],
-        watchVariable: 'user_email'
-      },
-      limitRate: {
-        id: 'app',
-        throttle: 50000
-      }
-    })
-      .then((result) => {
+    try {
+      const response = await axios.post('/api/send-email', {
+        fname: user.fname,
+        lname: user.lname,
+        email: user.email,
+        phone: user.phone,
+        info: user.info
+      });
+
+      if (response.data.success) {
         alert('Email sent! You will be contacted shortly!');
-        console.log('EmailJS result:', result);
-      }, (error) => {
-        console.log('EmailJS error:', error.status)
-        alert('Error: ' + error.status + ' - ' + error.text);
-    });
+        // Reset form
+        setUser({
+          fname: '',
+          lname: '',
+          email: '',
+          phone: '',
+          info: ''
+        });
+      } else {
+        alert('Failed to send email. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Error sending email: ' + (error.response?.data?.message || error.message));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -183,6 +180,7 @@ const Contact = () => {
                     className="btn btn-lg px-5" 
                     type="button" 
                     onClick={sendEmail}
+                    disabled={isSubmitting}
                     style={{
                       backgroundColor: '#6d8454',
                       color: 'white',
@@ -190,10 +188,12 @@ const Contact = () => {
                       borderRadius: '10px',
                       padding: '15px 60px',
                       fontSize: '1.1rem',
-                      border: 'none'
+                      border: 'none',
+                      opacity: isSubmitting ? 0.7 : 1,
+                      cursor: isSubmitting ? 'not-allowed' : 'pointer'
                     }}
                   >
-                    Submit Order Inquiry
+                    {isSubmitting ? 'Sending...' : 'Submit Order Inquiry'}
                   </button>
                 </div>
               </form>
