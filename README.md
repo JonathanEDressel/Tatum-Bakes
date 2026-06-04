@@ -44,12 +44,31 @@ the form automatically from the HTML at deploy time — no extra config needed.
 > form's success animation in "demo mode" without sending — actual delivery only
 > happens on the deployed Netlify site.
 
+## Photos
+
+All images live in the `resources/` folder and are referenced with relative
+paths (e.g. `resources/biscoff-cake.png`):
+
+| File | Used for |
+| --- | --- |
+| `logo.jpg` | Favicon, navbar, hero, footer |
+| `biscoff-cake.png` | Hero background + gallery + "Holiday" past-work card |
+| `lava-cake.jpg` | About section + gallery + "Holiday" past-work card |
+| `wedding.jpg` | Gallery + "Wedding" past-work card |
+| `gender-reveal.jpg` | Gallery + "Gender Reveal" past-work card |
+
+To add or swap photos, drop the file in `resources/` and update the matching
+`src="resources/…"` in `index.html`. **Tip:** `wedding.jpg` and
+`gender-reveal.jpg` are low resolution (206×206), so they're used only at
+thumbnail size; the lightbox is capped so they never enlarge into a blurry
+image. Higher-res replacements (~1000px+) will look even better.
+
+The **Menu** section uses icons (not photos) so the offerings stay clean and
+consistent — the only photos on the site are your real ones.
+
 ## Customizing
 
-- **Logo / favicon:** replace `logo.jpg`.
-- **Photos:** the gallery, menu, and past-work images use Unsplash placeholders.
-  Swap the `src` URLs in `index.html` for your own photos (drop them in an
-  `images/` folder and reference e.g. `images/my-cake.jpg`).
+- **Logo / favicon:** replace `resources/logo.jpg`.
 - **Colors:** edit the CSS variables under `:root` at the top of the `<style>` block.
 - **Content:** prices, menu items, reviews, and past projects are all plain HTML
   near their section comments (`<!-- ============ ... ============ -->`).
