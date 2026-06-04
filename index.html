@@ -165,8 +165,8 @@
 
     /* ---------- Marquee strip ---------- */
     .marquee { background: var(--tb-green-700); color: var(--tb-cream); overflow: hidden; white-space: nowrap; }
-    .marquee-track { display: inline-flex; gap: 3rem; padding: .9rem 0; animation: marquee 22s linear infinite; }
-    .marquee-track span { font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-size: .82rem; display: inline-flex; align-items: center; gap: .8rem; }
+    .marquee-track { display: inline-flex; padding: .9rem 0; animation: marquee 22s linear infinite; }
+    .marquee-track span { font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-size: .82rem; display: inline-flex; align-items: center; gap: .8rem; margin-right: 3rem; }
     .marquee-track i { color: var(--tb-peach); }
     @keyframes marquee { from { transform: translateX(0);} to { transform: translateX(-50%);} }
 
@@ -376,7 +376,7 @@
       <span><i class="bi bi-gift"></i> Holiday Treats</span>
       <span><i class="bi bi-heart"></i> Made with Love</span>
       <span><i class="bi bi-house-heart"></i> Local Pickup</span>
-      <!-- duplicated for seamless loop -->
+      <!-- duplicated for CSS-only fallback; JS fills more copies for large screens -->
       <span><i class="bi bi-flower1"></i> Custom Cakes</span>
       <span><i class="bi bi-cookie"></i> Fresh Cookies</span>
       <span><i class="bi bi-cup-hot"></i> Cupcakes</span>
@@ -777,8 +777,7 @@
           <div class="d-flex gap-2 mt-3">
             <a href="#" class="social-ico" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
             <a href="#" class="social-ico" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="social-ico" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-            <a href="#" class="social-ico" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+            <!-- <a href="#" class="social-ico" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a> -->
           </div>
         </div>
         <div class="col-6 col-lg-2">
@@ -1036,6 +1035,27 @@
       });
     }
   })();
+
+  // ── Marquee: fill to 4× widest screen so the seam is never visible ──────────
+  (function () {
+    var track = document.querySelector('.marquee-track');
+    if (!track) return;
+    requestAnimationFrame(function () {
+      // With margin-right on every span (including the last), each set of 6 items
+      // is exactly half the current track width — so -50% is pixel-perfect.
+      var setWidth   = track.scrollWidth / 2;
+      var targetWide = Math.max(window.screen.width, window.innerWidth) * 4;
+      var origItems  = Array.from(track.children).slice(0, 6);
+      var safety     = 0;
+      while (track.scrollWidth < targetWide && safety++ < 100) {
+        origItems.forEach(function (el) { track.appendChild(el.cloneNode(true)); });
+      }
+      // Inject a pixel-exact keyframe so no sub-pixel rounding ever causes a jump
+      var s = document.createElement('style');
+      s.textContent = '@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-' + setWidth + 'px)}}';
+      document.head.appendChild(s);
+    });
+  }());
   </script>
 </body>
 </html>
